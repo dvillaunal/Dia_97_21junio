@@ -1,28 +1,26 @@
-```{r, eval=FALSE, include=TRUE}
-"Protocolo:
- 
- 1. Daniel Felipe Villa Rengifo
- 
- 2. Lenguaje: R
- 
- 3. Tema: Maquinas de Vector Soporte [Parte 2]
- 
- 4. Fuentes:  
-    https://www.datacamp.com/community/tutorials/support-vector-machines-r"
-```
+## ---- eval=FALSE, include=TRUE-------------------------------------------------------
+## "Protocolo:
+## 
+##  1. Daniel Felipe Villa Rengifo
+## 
+##  2. Lenguaje: R
+## 
+##  3. Tema: Maquinas de Vector Soporte [Parte 2]
+## 
+##  4. Fuentes:
+##     https://www.datacamp.com/community/tutorials/support-vector-machines-r"
 
-```{r}
+
+## ------------------------------------------------------------------------------------
 
 #Gracias a los archivos .RData sacaremos toda la información de los datos sin importar nada más:
 #load("~/R/100DaysOfCode/Dia_97_21junio/.RData")
 
 # Guardamos los OUTPUTS:
 sink("OUTPUTS.txt")
-```
 
-# Evaluación del modelo
 
-```{r}
+## ------------------------------------------------------------------------------------
 # Cargamos la libreria
 library(e1071)
 
@@ -36,21 +34,9 @@ library(dplyr)
 paste("Observaciones de test mal clasificadas:", 
       100 * mean(datosOJ_test$Purchase != predicciones) %>% 
         round(digits = 4), "%")
-```
-
-# Paquete caret
 
 
-+ SVM lineal: method = “svmLinear”
-
-+ SVM polinómico: method = “svmPoly”
-
-+ SVM radial: method = “svmRadial”
-
-Si no se especifica, la métrica para la evaluación es el Accuracy.
-Podría emplearse otra como por ejemplo “ROC”.
-
-```{r}
+## ------------------------------------------------------------------------------------
 # AJUSTE DEL MODELO
 # -----------------------------------------------------------------------------
 # Configuración del proceso de selección del modelo
@@ -92,16 +78,9 @@ dev.off()
 # -----------------------------------------------------------------------------
 print("# EVALUACIÓN DEL MODELO #-----------------------------------------------------------------------------")
 confusionMatrix(predict(modelo_svc, datosOJ_test), datosOJ_test$Purchase)
-```
 
 
-# Support vector machine
-
-Además del hiperparámetro de penalización `C`, en los modelos SVM es necesario especificar el hiperparámetro gamma (para kernel radial) o el grado de polinomio (para kernel polinómico), los cuales también son importante optimizar mediante validación cruzada.
-
-## Kernel polinómico
-
-```{r}
+## ------------------------------------------------------------------------------------
 # Creamos una semilla:
 set.seed(325)
 
@@ -139,4 +118,3 @@ modelo_svmP <- svm(Purchase ~ ., data = datosOJ_train, kernel = "polynomial",
 
 print("# Modelo SVM kernel polinómico")
 summary(modelo_svmP)
-```
