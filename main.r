@@ -118,3 +118,5 @@ modelo_svmP <- svm(Purchase ~ ., data = datosOJ_train, kernel = "polynomial",
 
 print("# Modelo SVM kernel polinómico")
 summary(modelo_svmP)
+
+sink()

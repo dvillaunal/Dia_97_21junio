@@ -150,9 +150,11 @@ modelo_svmP <- svm(Purchase ~ ., data = datosOJ_train, kernel = "polynomial",
 
 print("# Modelo SVM kernel polinómico")
 summary(modelo_svmP)
+
+sink()
 ```
 
-```{r}
+```{r, eval=FALSE, include=TRUE}
 library(knitr)
 purl("Dia_97_21junio.Rmd", "main.r")
 ```
